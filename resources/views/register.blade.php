@@ -30,9 +30,17 @@
     <div class="limiter">
         <div class="container-login100" style="background-image: url('images/img-01.jpg');">
             <div class="wrap-login100 p-b-30">
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" action="{{ route('storeRegister') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="login100-form-avatar">
                         <img src="{{ asset('login/images/SiNotes.png') }}" alt="logo">
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Name is required">
+                        <input class="input100" type="text" name="name" placeholder="Name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user"></i>
+                        </span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
                         <input class="input100" type="text" name="username" placeholder="Username">
@@ -42,7 +50,7 @@
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <input class="input100" type="password" name="password" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock"></i>
@@ -50,20 +58,26 @@
                     </div>
 
                     <div class="role-regist">
-                        <select class="form-select form-select-sm roleku" aria-label=".form-select-sm ">
+                        <select class="form-select form-select-sm roleku" aria-label=".form-select-sm" name="role">
                             <option selected>Role</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="pm">Project Manager</option>
+                            <option value="member"> Member </option>
                           </select>
                     </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label font-weight-bold" style="margin-top:20px; margin-left: 20px">Foto</label>
+                        <input class="form-control form-input-gambar" name="image" type="file" id="formFile">
+                    </div>
+                    
                     <div class="container-login100-form-btn p-t-10">
                         <button class="login100-form-btn">
                             Register
                         </button>
                     </div>
                     <div class="text-center w-full m-t-20">
-                        <a class="txt1" href="#">
+                        <a class="txt1" href="{{ route('login') }}">
                             Have account ? Login Here
                             <i class="fa fa-long-arrow-right"></i>
                         </a>

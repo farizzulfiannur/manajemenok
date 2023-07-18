@@ -17,11 +17,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    const role_pm = 'pm';
+    const role_member = 'member';
+
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
+        'role',
     ];
+
+    public function profiles(){
+        return $this->hasOne(profile::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
