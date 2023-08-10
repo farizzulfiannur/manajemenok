@@ -23,13 +23,37 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
-        'username',
+        'email',
         'password',
-        'role',
     ];
 
     public function profiles(){
         return $this->hasOne(profile::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(note::class);
+    }
+
+    public function tasks(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles']);
+        // ->as('user_task');
+        // -> using()
+    }
+
+    public function task_admin(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles'])
+        ->wherePivot('is_roles',1);
+    }
+    public function task_member(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles'])
+        ->wherePivot('is_roles',2);
     }
 
     /**

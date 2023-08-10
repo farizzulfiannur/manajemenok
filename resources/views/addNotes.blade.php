@@ -52,18 +52,17 @@
                     <div class="mt-2 mb-2">
                         @php
                             $imageProfile = $user->profiles->image;
-                            // dd($imageProfile);
                         @endphp
                         @if ($imageProfile)
-                        <img src="{{ asset('profile/' . $imageProfile) }}" alt="Profile"
-                        class="profile d-block m-auto">
+                            <img src="{{ asset('profile/' . $imageProfile) }}" alt="Profile"
+                                class="profile d-block m-auto">
                         @else
-                        <img src="{{ asset('adminpnl/img2/avatar6.jpg') }}" alt="Profile"
-                            class="profile d-block m-auto">
+                            <img src="{{ asset('adminpnl/img2/avatar6.jpg') }}" alt="Profile"
+                                class="profile d-block m-auto">
                         @endif
                     </div>
                     <h3 class="namaprofile"> {{ Auth::user()->name }} </h3>
-                    <a class="editprofile" href="">
+                    <a class="editprofile" href="{{ route('editprofilePM', [Auth::user()->id]) }}">
                         <p>Edit Profile</p>
                     </a>
                 </li>
@@ -105,75 +104,62 @@
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
-            <form action="{{ route('updateprofilePM', [$user->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('storeNotes') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('homePM') }}">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item active">Edit Profile</li>
-                </ol>
-                <div class="box_general padding_bottom" style="height: 80vh">
-                    <div class="header_box version_2">
-                        <h2><i class="fa fa-file"></i>Edit Profile</h2>
-                    </div>
+                <div class="box_general padding_bottom box_custom" style="height: 86vh;">
+                    <a href="{{ route('homePM') }}" class="back_box_custom "> X </a>
+                    <ol class="breadcrumb judul_box_custom">
+                        <li class="breadcrumb-item" style="padding-left: 11px">
+                            <h3 style="border-left: 5px solid #9c0aaf; display: inline"></h3>
+                            <h3 style="color: white !important; padding-top: 3px; padding-left: 8px; display: inline">
+                                Add Note </h3>
+                        </li>
+                    </ol>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" name="name"
-                                    value="{{ Auth::user()->name }}">
+                                <label style="color: white !important; padding-left: 10px; font-size: 16px"> Title
+                                </label>
+                                <input type="text" class="form-control"
+                                    style="background: #26282F; border-radius: 40px; color: white; border:none; padding-left: 20px"
+                                    name="title">
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" name="username"
-                                    value="{{ Auth::user()->username }}">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label style="display: block">Foto</label>
-                                @if ($imageProfile)
-                                    <img src="{{ asset('profile/' . $imageProfile) }}" width="100px" height="100px"
-                                        style="border-radius: 10px">
-                                @else
-                                @endif
-                                <input class="form-control form-input-gambar mt-3" name="image"
-                                    type="file" id="formFile">
+                                <label style="color: white !important; padding-left: 10px; font-size: 16px"> Contents
+                                </label>
+                                <textarea type="text" class="form-control"
+                                    style="background: #26282F; border-radius: 20px; color: white; border:none; padding-left: 20px" rows="9"
+                                    name="desc"></textarea>
                             </div>
                         </div>
                     </div>
+                    <button type="submit" class="btn_1 btn_2 medium float-right"> Add </button>
                 </div>
-                <button type="submit" class="btn_1 medium float-right"> Update </button>
             </form>
         </div>
         <!-- /.container-fluid-->
     </div>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Apakah anda yakin ingin logout</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-logout" href="{{ route('logout') }}">Logout</a>
-                </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#0">Logout</a>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('adminpnl/vendor/jquery/jquery.min.js') }}"></script>

@@ -16,7 +16,8 @@ class HomeController extends Controller
         return view('login');
     }
 
-    function logout(){
+    function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
@@ -31,9 +32,8 @@ class HomeController extends Controller
         // dd($request);
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
         ]);
 
         if ($request->hasFile('image')) {
@@ -65,17 +65,21 @@ class HomeController extends Controller
     function storeLogin(Request $request)
     {
         $data = [
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => $request->password
         ];
-        // $user = Auth::user()->id;
-        // $profile = profile::where('user_id',$user)->get();
+        // if (Auth::attempt($data)) {
+        //     if ($request->user()->role == User::role_pm) {
+        //         return redirect()->route('homePM');
+        //     } else {
+        //     }
+        // }else{
+        //     return redirect()->route('login');
+        // }
         if (Auth::attempt($data)) {
-            if ($request->user()->role == User::role_pm) {
-                return redirect()->route('homePM');
-            } else {
-
-            }
+            return redirect()->route('homePM');
+        } else {
+            return redirect()->route('login');
         }
     }
 }

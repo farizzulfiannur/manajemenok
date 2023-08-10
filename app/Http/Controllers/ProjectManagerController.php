@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\File;
 class ProjectManagerController extends Controller
 {
     function homePM(){
-        return view('pm.home');
+        $user =  Auth::user();
+        return view('pm.home', compact('user'));
     }
 
     function editprofilePM($id){

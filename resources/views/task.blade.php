@@ -81,22 +81,6 @@
                         <span class="nav-link-text"> Task List </span>
                     </a>
                 </li>
-                @if ($user->role == 'pm')
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents">
-                        <i class="fa fa-fw fa-gear"></i>
-                        <span class="nav-link-text">Components</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponents">
-                        <li>
-                            <a href="charts.html">Charts</a>
-                        </li>
-                        <li>
-                            <a href="tables.html">Tables</a>
-                        </li>
-                    </ul>
-                </li>
-                @endif
             </ul>
             <ul class="navbar-nav sidenav-toggler">
                 <li class="nav-item">
@@ -119,7 +103,8 @@
             <!-- Greetings -->
             <div class="row greeting">
                 <div class="col-12 mb-4">
-                    <h1>Welcome {{ $user->name }} </h1>
+                    <h1> Task List </h1>
+                    {{-- <h6>  {{ $user->name }} </h6> --}}
                 </div>
                 {{-- <div class="col-8">
                     <p class="mt-3"> You're logged in as Project Manager </p>
@@ -138,7 +123,7 @@
             @if (session('fail'))
                 <div class="alert alert-danger alert-dismissible fade show"
                     style="margin-left: 50px; margin-right: 85px;" role="alert">
-                    <strong>Sorry!</strong> {{session('fail')}}
+                    <strong>Sorry!</strong> {{ session('fail') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -147,31 +132,57 @@
             <div class="saved">
                 <div class="row">
                     <i class="fa fa-paperclip" style="color: white; margin-top: 4px;"> </i>
-                    <div class="col-10">
-                        <p> Add note </p>
+                    <div class="col-lg-10">
+                        <p> Add Task </p>
                     </div>
-                    <a href="{{ route('addNotes') }}" class="input">
-                        <div class="col-1"><i class="fa fa-plus"></i></div>
+                    <a href="{{ route('addTask') }}" class="input">
+                        <div class="col-lg-1"><i class="fa fa-plus"></i></div>
                     </a>
                 </div>
             </div>
             <div class="container square">
                 <div class="row">
-                    @php
-                      $notes = $user->notes
-                    @endphp
-                    @foreach ($notes as $note)
-                    <div class="col-sm-6 col-lg-4 mb-4">
-                        <div class="card body-square">
-                            <a href="{{ route('showNotes',[$note->id]) }}">
-                                <div class="card-body">
-                                    <h5 class="card-title mb-4 mt-3"
-                                        style="color: white !important; text-align: center;">{{ $note->title }}
-                                    </h5>
-                                </div>
-                            </a>
+                    @foreach ($user->task_admin as $task)
+                        <div class="col-sm-6 col-lg-4 mb-4">
+                            <div class="card body-square">
+                                <a href="{{ route('showTask',[$task->id]) }}">
+                                    <div class="card-body">
+                                        @if ($task->status == 'success')
+                                            <h5 class="badge bg-success status"> </h5>
+                                        @endif
+                                        @if ($task->status == 'pending')
+                                            <h5 class="badge bg-danger status"> </h5>
+                                        @endif
+                                        <h4 class="card-title mt-4"
+                                            style="color: white !important; text-align: center; "> {{ $task->name }}
+                                        </h4>
+                                        <p style="font-size: 14px; color: #a3f0ff !important; text-align: center">
+                                            Project Manager </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
+                    @foreach ($user->task_member as $task)
+                        <div class="col-sm-6 col-lg-4 mb-4">
+                            <div class="card body-square">
+                                <a href="{{ route('showTask',[$task->id]) }}">
+                                    <div class="card-body">
+                                        @if ($task->status == 'success')
+                                            <h5 class="badge bg-success status"> </h5>
+                                        @endif
+                                        @if ($task->status == 'pending')
+                                            <h5 class="badge bg-danger status"> </h5>
+                                        @endif
+                                        <h4 class="card-title mt-4"
+                                            style="color: white !important; text-align: center; "> {{ $task->name }}
+                                        </h4>
+                                        <p style="font-size: 14px; color: #40fa6c !important; text-align: center">
+                                            Member </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             </div>
