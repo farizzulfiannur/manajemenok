@@ -1,0 +1,183 @@
+.content-wrapper .container-fluid .greeting h1{
+    margin-top: 80px;
+    margin-left: 80px;
+    color: #fff !important;
+}
+.content-wrapper .container-fluid .greeting h6{
+    /* margin-top: 80px; */
+    margin-left: 80px;
+    color: #fff !important;
+}
+.content-wrapper .container-fluid .greeting p{
+    /* margin-top: 80px; */
+    margin-left: 80px;
+    /* padding-right: 400px; */
+    color: #fff !important;
+    text-align: justify;
+}
+.content-wrapper .container-fluid .saved p{
+    /* margin-top: 80px; */
+    margin-left: 0px;
+    /* padding-right: 400px; */
+    color: #fff !important;
+    text-align: justify;
+}
+.content-wrapper .container-fluid .saved{
+    /* margin-top: 80px; */
+    margin-left: 100px;
+    /* padding-right: 400px; */
+    color: #fff !important;
+    text-align: justify;
+}
+
+.profile{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.namaprofile{
+    color: white !important;
+    /* margin-left: 34px; */
+    text-align: center;
+    font-size: 20px;
+}
+
+.editprofile{
+    color: #e1e1e1e3 !important;
+    text-align: center;
+}
+
+.editprofile:hover{
+    color: white !important;
+    text-align: center;
+}
+
+.square{
+    padding-left: 50px;
+    padding-right: 80px;
+}
+
+.body-square{
+    border-radius: 15px;
+    background-color: #222328;
+}
+.body-square:hover{
+    border-radius: 15px;
+    background-color: #3b3b3b;
+}
+
+.custom-close{
+    font-size: 20px;
+    color: #fff;
+    margin-top: 0px;
+}
+.custom-close:hover{
+    font-size: 20px;
+    color: #d70909;
+}
+
+.btn-logout{
+    color: white;
+    background-color: #1787ff;
+    border-color: #1787ff;
+}
+
+.btn-logout:hover{
+    color: white;
+    background-color: #092dbb;
+    border-color: #092dbb;
+}
+
+.input {
+    color: #fff;
+
+}
+
+.input:hover{
+    color: #6b6b6b;
+}
+
+/* Custom Box */
+
+.box_custom{
+    margin-top: 20px; 
+    margin-left: 20px; 
+    margin-right: 20px;
+    border-radius: 40px;
+    /* height: 83vh; */
+    background-color: #36373e;
+}
+
+.judul_box_custom {
+    margin-top: 20px;
+    border-radius: 40px;
+    background-color: #26282F;
+    color: white  !important;
+}
+
+.btn_2 {
+    background-color: #9c0aaf;
+}
+.btn_2:hover {
+    background-color: #d120f0;
+}
+
+.back_box_custom{
+    color: #9c0aaf;
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    justify-content: end;
+    margin-right: 5px;
+}
+
+.back_box_custom:hover{
+    color: #d120f0;
+}
+
+.btn_delete{
+    position: absolute;
+    bottom: 120px;
+    right: 65px;
+}
+.btn_edit{
+    position: absolute;
+    bottom: 120px;
+    right: 150px;
+}
+.btn_edit2{
+    position: absolute;
+    bottom: 20px;
+    right: 45px;
+    border-radius: 10px;
+}
+
+.status {
+    /* position: absolute; */
+    color: white !important;
+    font-weight: 500;
+    padding: 5px;
+    font-size: 15px;
+    float: right;
+    margin-bottom: 10px;
+    /* border: 3px solid; */
+}
+
+.form-custom{
+    width: 100%;
+    padding: 13px;
+    background: #26282F; 
+    border-radius: 10px; 
+    color: white; 
+    border:none; 
+    margin-right: 5px;
+}
+
+.form-label {
+    color: white !important; 
+    padding-left: 10px; 
+    font-size: 16px"
+}
+
+

@@ -17,11 +17,44 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    const role_pm = 'pm';
+    const role_member = 'member';
+
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+
+    public function profiles(){
+        return $this->hasOne(profile::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(note::class);
+    }
+
+    public function tasks(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles']);
+        // ->as('user_task');
+        // -> using()
+    }
+
+    public function task_admin(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles'])
+        ->wherePivot('is_roles',1);
+    }
+    public function task_member(){
+        return $this->belongsToMany(task::class,'tasks_users','users_id','tasks_id')
+        ->withTimestamps()
+        ->withPivot(['is_roles'])
+        ->wherePivot('is_roles',2);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
